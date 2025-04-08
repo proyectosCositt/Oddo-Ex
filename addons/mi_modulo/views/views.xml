@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de formulario -->
+    <record id="view_mi_modelo_form" model="ir.ui.view">
+        <field name="name">mi_modulo.mi_modelo.form</field>
+        <field name="model">mi_modulo.mi_modelo</field>
+        <field name="arch" type="xml">
+            <form string="Mi Modelo">
+                <header>
+                    <button name="action_confirmar" string="Confirmar" type="object" class="oe_highlight" states="borrador"/>
+                    <button name="action_cancelar" string="Cancelar" type="object" states="borrador,confirmado"/>
+                    <button name="action_borrador" string="Volver a borrador" type="object" states="cancelado"/>
+                    <field name="state" widget="statusbar" statusbar_visible="borrador,confirmado,cancelado"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                    </group>
+                    <notebook>
+                        <page string="Descripción">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de árbol (lista) -->
+    <record id="view_mi_modelo_tree" model="ir.ui.view">
+        <field name="name">mi_modulo.mi_modelo.tree</field>
+        <field name="model">mi_modulo.mi_modelo</field>
+        <field name="arch" type="xml">
+            <tree string="Mi Modelo">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de búsqueda -->
+    <record id="view_mi_modelo_search" model="ir.ui.view">
+        <field name="name">mi_modulo.mi_modelo.search</field>
+        <field name="model">mi_modulo.mi_modelo</field>
+        <field name="arch" type="xml">
+            <search string="Mi Modelo">
+                <field name="name"/>
+                <field name="date"/>
+                <filter string="Borrador" name="draft" domain="[('state','=','borrador')]"/>
+                <filter string="Confirmado" name="confirmed" domain="[('state','=','confirmado')]"/>
+                <filter string="Cancelado" name="canceled" domain="[('state','=','cancelado')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Estado" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Fecha" name="group_by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de ventana -->
+    <record id="action_mi_modelo" model="ir.actions.act_window">
+        <field name="name">Mi Modelo</field>
+        <field name="res_model">mi_modulo.mi_modelo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Elemento de menú -->
+    <menuitem id="menu_mi_modulo_root" name="Mi Módulo" sequence="10"/>
+    <menuitem id="menu_mi_modulo_sub" name="Mi Módulo" parent="menu_mi_modulo_root" sequence="10"/>
+    <menuitem id="menu_mi_modelo" name="Mi Modelo" parent="menu_mi_modulo_sub" action="action_mi_modelo" sequence="10"/>
+</odoo> 
