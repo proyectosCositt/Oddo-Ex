@@ -1,0 +1,4 @@
+nombre,email,telefono,calle,ciudad,es_empresa
+Empresa ABC,contacto@empresaabc.com,+34 912345678,"Calle Principal 123","Madrid",1
+Juan Pérez,juan.perez@ejemplo.com,+34 611223344,"Avda. de la Constitución 45","Barcelona",0
+María Rodríguez,maria.rodriguez@ejemplo.com,+34 622334455,"Gran Vía 67","Valencia",0 
